@@ -9,6 +9,6 @@ int main(void)
     long n4 = 1234567890;
     printf("%.1e %.1e %.1e %.1e\n", n1, n2, n3, n4);
     printf("%ld %ld\n", n3, n4);
-    printf("%ld %ld %ld %ld\n", n1, n2, n3, n4); //书上写这一行后面两个不能正确显示
+    printf("%ld %ld %ld %ld\n", n1, n2, n3, n4); //书上写这一行后面两个不能正确显示,不同的编译器寄存方式不一样吧
     return 0;
 }

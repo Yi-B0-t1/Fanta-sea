@@ -29,6 +29,7 @@
   ],
   "C_Cpp.errorSquiggles": "Disabled",
   "files.associations": {
-    "float.h": "c"
+    "float.h": "c",
+    "limits.h": "c"
   }
 }

@@ -14,7 +14,13 @@ int main(void)
         printf("%10.1f　%15.2f　inches\n", shoe, foot);
         shoe = shoe + 1.0;
     } /* 块结束　　　 */
-    printf("If　the　shoe　fits,　wear　it.\n");
+    int i = 1;
+    while (i > 32)
+    {
+        printf("special word%c\n", 'A');
+        i = 33;
+    }
+    printf("f　the　shoe　fits,　wear　it.\n");
     int new = pow(2, 6);
     printf("test new operater: 2^2: %d\a", new);
     return 0;

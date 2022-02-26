@@ -15,7 +15,7 @@ int main(void)
         shoe = shoe + 1.0;
     } /* 块结束　　　 */
     int i = 1;
-    while (i > 32)
+    while (i < 32)
     {
         printf("special word%c\n", 'A');
         i = 33;

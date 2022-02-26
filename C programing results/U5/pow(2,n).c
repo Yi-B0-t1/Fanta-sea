@@ -4,8 +4,7 @@
 int main()
 {
     const double CROP = 2E16; //世界小麦年产谷粒数
-    double current,
-        total;
+    double current, total;
     int count = 1;
     printf("square　　　 grains　　　　 total　　　    fraction　of　\n");
     printf("　　　　 　　added　　　　　grains　　     world　total\n");

@@ -3,6 +3,9 @@ int main()
 {
     int a = 4 % 3 * 9;
     int b = (3 > 5);
-    printf("test a number:___%d__%d__", a, b);
+    char ch;
+    ch = '%';
+    printf("%c and %%\n", ch);
+    printf("test ''a number:___%d__%d__", a, b);
     return 0;
 }

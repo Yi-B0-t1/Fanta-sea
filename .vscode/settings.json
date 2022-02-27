@@ -30,6 +30,7 @@
   "C_Cpp.errorSquiggles": "Disabled",
   "files.associations": {
     "float.h": "c",
-    "limits.h": "c"
+    "limits.h": "c",
+    "stdio.h": "c"
   }
 }

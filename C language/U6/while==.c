@@ -8,7 +8,7 @@ int main(void)
     printf("Please　enter　an　integer　to　be　summed　");
     printf("(q　to　quit):　");
     status = scanf("%ld", &num);
-    while (status == 1) /* == 的意思是“等于”　*/
+    while (status == 1) /* == 的意思是“等于吗？”　*/
     {
         sum = sum + num;
         printf("Please enter next integer (q to quit) :　");

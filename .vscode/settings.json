@@ -31,6 +31,7 @@
   "files.associations": {
     "float.h": "c",
     "limits.h": "c",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "math.h": "c"
   }
 }

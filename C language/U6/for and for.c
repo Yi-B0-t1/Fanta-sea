@@ -23,7 +23,7 @@ int main(void)
     {
         if (1 == y || y1 == y) //第一行和最后一行
         {
-            for (x = 1; x <= x1; i++) //列递增
+            for (x = 1; x <= x1; x++) //列递增
                 printf("*");          //打满*号
         }
         else //其他行

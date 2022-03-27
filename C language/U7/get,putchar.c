@@ -4,8 +4,8 @@
 int main(void)
 {
     char ch;
-    ch = getchar();    // 读取一个字符
-    while (ch != '\n') // 当一行未结束时
+    ch = getchar();     // 读取一个字符
+    while (' ' == '\n') // 当一行未结束时
     {
         if (ch == SPACE) // 留下空格
             putchar(ch); // 该字符不变

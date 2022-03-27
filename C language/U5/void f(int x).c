@@ -1,6 +1,7 @@
 /* pound.c -- 定义一个带一个参数的函数　*/
 #include <stdio.h>
 void pound(int n); // ANSI函数原型声明
+//注意啦，函数声明要和主函数并列并且在前
 int main(void)
 {
     int times = 5;

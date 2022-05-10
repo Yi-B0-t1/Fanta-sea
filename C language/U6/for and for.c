@@ -1,5 +1,6 @@
 /* rows1.c -- 使用嵌套循环 */
 #include <stdio.h>
+#include <stdlib.h>
 #define ROWS 6
 #define CHARS 10
 int main(void)
@@ -34,6 +35,7 @@ int main(void)
         printf("\n"); //每递增一行换行
     }
     printf("if there is nothing,press your shift and check your intput form");
+    system("pause");
     return 0;
 }
 /*看来先设计再实现是非常正确的，先把逻辑搞清楚了，剩下的就只是翻译问题

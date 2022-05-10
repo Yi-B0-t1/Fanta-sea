@@ -28,8 +28,11 @@ int deleteElement(int a[], int n, int x)
 {
     int b[6] = {0}, i, j;
     for (i = j = 0; i < n; i++)
-        if (a[i] != x)
-            b[j++] = a[i]; // good++
+        ;
+    char const *ptr = b;
+    ptr++;
+    if (a[i] != x)
+        b[j++] = a[i]; // good++
     for (i = 0; i < n; i++)
         a[i] = b[i];
     return j;

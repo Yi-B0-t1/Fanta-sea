@@ -1,68 +1,29 @@
 #include "prepare.h"  //函数原型声明与数据结构原型
 #include "funtions.h" //函数定义
-#include <stdio.h>
-
-int TOTAL = 10;
 int main(void)
 {
-    /*用于数据存储的数组*/
-    Student stu_list[TOTAL];
-    Course course_list[TOTAL];
-    Select select_list[TOTAL];
-    Score grade_list[TOTAL];
-    FILE *file_stu, *file_course, *file_select; //输入的三个文件的指针
-    /*主要功能*/
     while (1) //七个主功能，7*3个子功能
     {
         switch (menu_select()) //主菜单
         {
         case 1:
             system("cls"); /* 清屏 */
-            /*从文件导入初始数据*/
+            // input stream loaded
             puts("NOW you are in: Initialize from 3 files\n");
-            // inputfile(FILE * file_stu, FILE * file_course, FILE * file_select);
-            {
-                char filename[30];
-                puts("Enter the name of the \"STUDENT\" file to be processed:\n");
-                scanf("%30s", filename);
-                if ((file_stu = fopen(filename, "rb")) == NULL)
-                { /* 只读模式　 */
-                    printf("can't open %s,be well prepared next time!\n", filename);
-                    puts("file name such as \"name.txt\"");
-                    system("pause");
-                    break;
-                }
-                else
-                    puts("\n\"STUDENT\" file loaded.");
-                clearline();
-                puts("Enter the name of the \"COURSE\" file to be processed:\n");
-                scanf("%30s", filename);
-                if ((file_course = fopen(filename, "rb")) == NULL)
-                { /* 只读模式　 */
-                    printf("can't open %s,be well prepared next time!\n", filename);
-                    puts("file name such as \"name.txt\"");
-                    system("pause");
-                    break;
-                }
-                puts("\n\"COURSE\" file loaded.");
-                clearline();
-                puts("Enter the name of the \"SELECT\" file to be processed:\n");
-                scanf("%30s", filename);
-                if ((file_select = fopen(filename, "rb")) == NULL)
-                { /* 只读模式　 */
-                    printf("can't open %s,be well prepared next time!\n", filename);
-                    puts("file name such as \"name.txt\"");
-                    system("pause");
-                    break;
-                }
-                puts("\nALL files loaded.");
-            }
-            //文件输入
-            //现在的任务是确定文件的输入形式
-            system("pause");
+            openfiles(file_stu, file_course, file_select); //注意，不能把函数原型直接拷贝过来用，把类型名字去掉！
+            // create lists
+            init(stu_list, stu_total, course_list, course_total, select_list, select_total);
+            create_grade_list(stu_list, stu_total, course_list, course_total, select_list, select_total, grade_list);
+            sort_slist(stu_list, stu_total);        //按照学号升序排序。
+            sort_clist(course_list, course_total);  //按照课程号升序排序。
+            sort_grade_list(grade_list, stu_total); //按照平均成绩降序排序
+            puts("\nALL lists created.")
+                system("pause");
             break;
         case 2:
+            system("cls"); /* 清屏 */
             /*显示所有数据*/
+            //复制初始化即可
             system("pause");
             break;
         case 3:

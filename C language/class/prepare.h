@@ -1,5 +1,8 @@
 #include <stdio.h>
-/*数据结构*/
+#define TOTAL 30
+FILE *file_stu, *file_course, *file_select; //输入的三个文件的指针
+int *stu_total, *course_total, *select_total;
+
 typedef struct
 {
   char stu_ID[10];   //学号
@@ -10,13 +13,13 @@ typedef struct
 typedef struct
 {
   char course_ID[10];   //课号，长度 10 字符以内
-  char course_name[25]; //课姓名，12 个汉字以内
-  float course_grade;   //课程学分，为一个浮点数
+  char course_name[25]; //课名，12 个汉字以内
+  float course_grade;   //课分，为一个浮点数
 } Course;
 typedef struct
 {
-  char stu_ID[10];    //课号，长度 10 字符以下
-  char course_ID[10]; //课程号
+  char stu_ID[10];    //学号，长度 10 字符以下
+  char course_ID[10]; //课号
   float stu_grade;    //成绩，为一个浮点数
 } Select;
 typedef struct
@@ -27,22 +30,27 @@ typedef struct
   float average_grade; //加权平均分
   float total_grade;   //总修习学分
 } Score;
+/*数据结构*/
+/*用于数据存储的数组*/
+Student stu_list[TOTAL];
+Course course_list[TOTAL];
+Select select_list[TOTAL];
+Score grade_list[TOTAL];
 
 int menu_select(void); //菜单函数原型
-void eatline(void);
 
 /*初始化数据*/
-// voidinputfile(FILE *file_stu, FILE *file_course, FILE *file_select);
+void openfiles(FILE *file_stu, FILE *file_course, FILE *file_select);
 //输入表单
-void init(Student stu_list[], int *stu_total, Course course_list[], int *course_total, Score select_list[], int *select_total);
+void init(Student stu_list[], int *stu_total, Course course_list[], int *course_total, Select select_list[], int *select_total);
 //初始化数据
-int create_grade_list(Select select_list[], int select_total, Course course_list[], int course_total, Score grade_list[]);
+void create_grade_list(Student stu_list[], int *stu_total, Course course_list[], int *course_total, Select select_list[], int *select_total, Score grade_list[]);
 //建立成绩单
 
 /*排序函数*/
-void sort_slist(Student stu_list[], int stu_total);        //按照学号升序排序。
-void sort_clist(Course course_list[], int course_total);   //按照课程号升序排序。
-void sort_grade_list(Score grade_list[], int grade_total); //按照平均成绩降序排序
+void sort_slist(Student stu_list[], int *stu_total);      //按照学号升序排序。
+void sort_clist(Course course_list[], int *course_total); //按照课程号升序排序。
+void sort_grade_list(Score grade_list[], int *stu_total); //按照平均成绩降序排序
 
 /*显示数据*/
 void disp_stud(Student stu_list[], int stu_total);

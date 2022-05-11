@@ -14,39 +14,33 @@ int main(void)
             {                // create lists
                 init();
                 create_grade_list();
-                sort_slist(stu_list, stu_total);        //按照学号升序排序。
-                sort_clist(course_list, course_total);  //按照课程号升序排序。
-                sort_grade_list(grade_list, stu_total); //按照平均成绩降序排序
+                sort_slist();      //按照学号升序排序。
+                sort_clist();      //按照课程号升序排序。
+                sort_grade_list(); //按照平均成绩降序排序
             }
             break;
         case 2:
             system("cls"); /* 清屏 */
             /*显示所有数据*/
             //复制初始化即可
-            system("pause");
             break;
         case 3:
             /*键入与修改数据*/
-            system("pause");
             break;
         case 4:
             /*根据输入删除对应数据*/
-            system("pause");
             break;
         case 5:
             /*根据输入查询信息*/
-            system("pause");
             break;
         case 6:
             //导出所有数据
-            system("pause");
             break;
         case 0: //退出程序
             puts("Goodbye!\n");
-            system("pause");
-            exit(0);
+            return 0;
         }
+        system("pause");
         clearline();
     }
-    return 0;
 }

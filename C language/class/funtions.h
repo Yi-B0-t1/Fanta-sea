@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
-void clearline(void)
+void clearline(void) //清空输入缓冲
 {
     while (getchar() != '\n')
         continue;
@@ -39,7 +39,7 @@ int menu_select(void)
 //打开文件
 int openfiles(void)
 {
-    char filename[30] = {0};
+    char filename[20] = {0};
     int checker = 0;
     while (checker != 2)
     {
@@ -127,9 +127,9 @@ void init(void)
 
 /*以上内容已验证过准确无误*/
 
-//以下内容有待验证
 //事实证明driver的做法是好的，大程序往往很难看出来问题，有必要把每个函数部分单独测试
 
+//以下内容有待验证
 //学号，姓名，各科（按读入顺序）成绩，总分，加权平均分
 void create_grade_list(void)
 {
@@ -157,13 +157,13 @@ void create_grade_list(void)
         grade_list[tempstu].average_grade = average / grade_list[tempstu].total_grade;
     }
 }
-void sort_slist(Student stu_list[], int *stu_total) //按照学号升序排序。
+void sort_slist(void) //按照学号升序排序。
 {
     char *sort_array[*stu_total];
     int init;
     for (init = 0; init < *stu_total; init++)
     {
-        sort_array[init] = stu_list[init].stu_ID;
+        strcpy(sort_array[init], stu_list[init].stu_ID);
     }
     qsort(sort_array, *stu_total, sizeof(stu_list[0].stu_ID), array_sort);
     //一重循环排列元素
@@ -174,17 +174,20 @@ void sort_slist(Student stu_list[], int *stu_total) //按照学号升序排序�
         for (old = 0; old < *stu_total; old++)
         {
             if (strcmp(sort_array[init], stu_list[old].stu_ID))
+            {
                 old = init;
+                break;
+            }
         }
     }
 }
-void sort_clist(Course course_list[], int *course_total) //按照课程号升序排序。
+void sort_clist(void) //按照课程号升序排序。
 {
     char *sort_array[*course_total];
     int init;
     for (init = 0; init < *course_total; init++)
     {
-        sort_array[init] = course_list[init].course_ID;
+        strcpy(sort_array[init], course_list[init].course_ID);
     }
     qsort(sort_array, *course_total, sizeof(course_list[0].course_ID), array_sort);
     //一重循环排列元素
@@ -195,11 +198,14 @@ void sort_clist(Course course_list[], int *course_total) //按照课程号升序
         for (old = 0; old < *course_total; old++)
         {
             if (strcmp(sort_array[init], course_list[old].course_ID))
+            {
                 old = init;
+                break;
+            }
         }
     }
 }
-void sort_grade_list(Score grade_list[], int *stu_total) //按照平均成绩降序排序
+void sort_grade_list(void) //按照平均成绩降序排序
 {
     float sort_array[*stu_total];
     int init;
@@ -216,7 +222,10 @@ void sort_grade_list(Score grade_list[], int *stu_total) //按照平均成绩降
         for (old = 0; old < *stu_total; old++)
         {
             if (sort_array[init] == grade_list[old].average_grade)
+            {
                 old = init;
+                break;
+            }
         }
     }
 }

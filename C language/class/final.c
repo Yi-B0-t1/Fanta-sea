@@ -10,10 +10,10 @@ int main(void)
             system("cls"); /* 清屏 */
             // input stream loaded
             puts("NOW you are in: Initialize from 3 files\n");
-            if (openfiles(file_stu, file_course, file_select)) //注意，不能把函数原型直接拷贝过来用，把类型名字去掉！
-            {                                                  // create lists
-                init(stu_list, stu_total, course_list, course_total, select_list, select_total);
-                create_grade_list(stu_list, stu_total, course_list, course_total, select_list, select_total, grade_list);
+            if (openfiles()) //注意，不能把函数原型直接拷贝过来用，把类型名字去掉
+            {                // create lists
+                init();
+                create_grade_list();
                 sort_slist(stu_list, stu_total);        //按照学号升序排序。
                 sort_clist(course_list, course_total);  //按照课程号升序排序。
                 sort_grade_list(grade_list, stu_total); //按照平均成绩降序排序

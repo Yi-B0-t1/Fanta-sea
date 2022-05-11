@@ -1,7 +1,7 @@
 #include <stdio.h>
-#define TOTAL 30
+#define TOTAL 15
 FILE *file_stu, *file_course, *file_select; //输入的三个文件的指针
-int i[3];
+int i[3] = {0};
 int *stu_total = i, *course_total = &i[1], *select_total = &i[2]; //保护指针
 
 typedef struct
@@ -33,19 +33,19 @@ typedef struct
 } Score;
 /*数据结构*/
 /*用于数据存储的数组*/
-Student stu_list[TOTAL];
-Course course_list[TOTAL];
-Select select_list[TOTAL];
-Score grade_list[TOTAL];
+Student stu_list[TOTAL] = {0};
+Course course_list[TOTAL] = {0};
+Select select_list[TOTAL] = {0};
+Score grade_list[TOTAL] = {0};
 
 int menu_select(void); //菜单函数原型
 
 /*初始化数据*/
-int openfiles(FILE *file_stu, FILE *file_course, FILE *file_select);
+int openfiles(void);
 //输入表单
-void init(Student stu_list[], int *stu_total, Course course_list[], int *course_total, Select select_list[], int *select_total);
+void init(void);
 //初始化数据
-void create_grade_list(Student stu_list[], int *stu_total, Course course_list[], int *course_total, Select select_list[], int *select_total, Score grade_list[]);
+void create_grade_list(void);
 //建立成绩单
 
 int array_sort(const void *a, const void *b); //默认升序即a在前，b在后，返回a-b，注意return的强制类型转换，条件运算符是通解

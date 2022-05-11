@@ -36,12 +36,10 @@ int menu_select(void)
     return (c - '0');
 }
 
-//初始化数据
-// void init(Student stu_list[], int *stu_total, Course course_list[], int *course_total, Score select_list[], int *select_total)
-//打开三个文件
-int openfiles(FILE *file_stu, FILE *file_course, FILE *file_select)
+//打开文件
+int openfiles(void)
 {
-    char filename[30];
+    char filename[30] = {0};
     int checker = 0;
     while (checker != 2)
     {
@@ -54,7 +52,7 @@ int openfiles(FILE *file_stu, FILE *file_course, FILE *file_select)
             return 0;
         puts("Enter the name of the \"STUDENT\" file to be processed:\n");
         scanf("%30s", filename); //应该加一个退出功能的，算了吧
-        if ((file_stu = fopen(filename, "rb")) == NULL)
+        if ((file_stu = fopen(filename, "r")) == NULL)
         { /* 只读模式　 */
             printf("can't open %s,be well prepared next time!\n", filename);
             puts("file name such as \"name.txt\"");
@@ -67,7 +65,7 @@ int openfiles(FILE *file_stu, FILE *file_course, FILE *file_select)
         clearline();
         puts("Enter the name of the \"COURSE\" file to be processed:\n");
         scanf("%30s", filename);
-        if ((file_course = fopen(filename, "rb")) == NULL)
+        if ((file_course = fopen(filename, "r")) == NULL)
         { /* 只读模式　 */
             printf("can't open %s,be well prepared next time!\n", filename);
             puts("file name such as \"name.txt\"");
@@ -80,7 +78,7 @@ int openfiles(FILE *file_stu, FILE *file_course, FILE *file_select)
         clearline();
         puts("Enter the name of the \"SELECT\" file to be processed:\n");
         scanf("%30s", filename);
-        if ((file_select = fopen(filename, "rb")) == NULL)
+        if ((file_select = fopen(filename, "r")) == NULL)
         { /* 只读模式　 */
             printf("can't open %s,be well prepared next time!\n", filename);
             puts("file name such as \"name.txt\"");
@@ -98,21 +96,42 @@ int openfiles(FILE *file_stu, FILE *file_course, FILE *file_select)
     }
 }
 //建表
-void init(Student stu_list[], int *stu_total, Course course_list[], int *course_total, Select select_list[], int *select_total)
+void init(void)
 {
+    rewind(file_stu);
+    rewind(file_course);
+    rewind(file_select);
     int counter;
     for (counter = 0; EOF != fscanf(file_stu, "%s %s %s %d", stu_list[counter].stu_ID, stu_list[counter].stu_name, stu_list[counter].sex, &stu_list[counter].age); counter++)
         continue;
-    *stu_total = counter + 1;
+    *stu_total = counter;
     for (counter = 0; EOF != fscanf(file_course, "%s %s %f", course_list[counter].course_ID, course_list[counter].course_name, &course_list[counter].course_grade); counter++)
         continue;
-    *course_total = counter + 1;
+    *course_total = counter;
     for (counter = 0; EOF != fscanf(file_select, "%s %s %f", select_list[counter].stu_ID, select_list[counter].course_ID, &select_list[counter].stu_grade); counter++)
         continue;
-    *select_total = counter + 1;
+    *select_total = counter;
+    fclose(file_stu);
+    fclose(file_course);
+    fclose(file_select);
+
+    /*这些是测试用代码，验证文件确实正常读取
+        printf("counter==%d\n", counter--);
+        printf("%s %s %s %f", select_list[counter].stu_ID, course_list[3].course_ID, stu_list[2].sex, course_list[3].course_grade);
+        printf("\n%s\n", stu_list[0].stu_name);
+        getchar();
+        printf("02990227 肖阳   女 19");
+        system("pause");
+    */
 }
+
+/*以上内容已验证过准确无误*/
+
+//以下内容有待验证
+//事实证明driver的做法是好的，大程序往往很难看出来问题，有必要把每个函数部分单独测试
+
 //学号，姓名，各科（按读入顺序）成绩，总分，加权平均分
-void create_grade_list(Student stu_list[], int *stu_total, Course course_list[], int *course_total, Select select_list[], int *select_total, Score grade_list[])
+void create_grade_list(void)
 {
     int counter;
     int average_part, average;

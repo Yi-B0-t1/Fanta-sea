@@ -14,13 +14,13 @@ int menu_select(void)
     system("cls"); /* 清屏 */
     puts(
         "enter number 0to6 to choose function:\n"
-        "0. exit\n"
         "1. initialize from 3 files\n"
         "2. show all data\n"
         "3. renew\n"
         "4. delete\n"
         "5. find\n"
         "6. output all data\n"
+        "0. exit\n"
         "enter your number:");
     while (EOF != (c = getchar()))
     {
@@ -35,28 +35,26 @@ int menu_select(void)
     clearline();
     return (c - '0');
 }
-
 //打开文件
 int openfiles(void)
 {
     char filename[20] = {0};
-    int checker = 0;
-    while (checker != 2)
+    int checker = 0; //标记数据流
+    while (1)
     {
         if (checker == 0)
             puts("\"q\"\"enter\"\"q\"to quit.\"enter\"to continue");
         if (checker == 1)
-            puts("\"qq\"to quit.\"enter\"to continue");
+            puts("\"qq\"to quit.\"enter\"to continue\n
+                 file name such as \"name.txt\"\n");
         clearline();
         if ((int)'q' == getchar())
             return 0;
         puts("Enter the name of the \"STUDENT\" file to be processed:\n");
-        scanf("%30s", filename); //应该加一个退出功能的，算了吧
+        scanf("%30s", filename);
         if ((file_stu = fopen(filename, "r")) == NULL)
         { /* 只读模式　 */
             printf("can't open %s,be well prepared next time!\n", filename);
-            puts("file name such as \"name.txt\"");
-            system("pause");
             checker = 1;
             continue;
         }
@@ -68,8 +66,6 @@ int openfiles(void)
         if ((file_course = fopen(filename, "r")) == NULL)
         { /* 只读模式　 */
             printf("can't open %s,be well prepared next time!\n", filename);
-            puts("file name such as \"name.txt\"");
-            system("pause");
             checker = 1;
             continue;
         }
@@ -81,14 +77,11 @@ int openfiles(void)
         if ((file_select = fopen(filename, "r")) == NULL)
         { /* 只读模式　 */
             printf("can't open %s,be well prepared next time!\n", filename);
-            puts("file name such as \"name.txt\"");
-            system("pause");
             checker = 1;
             continue;
         }
         else
         {
-            checker = 2;
             puts("\nALL lists created.");
             system("pause");
             return 1;
@@ -157,6 +150,8 @@ void create_grade_list(void)
         grade_list[tempstu].average_grade = average / grade_list[tempstu].total_grade;
     }
 }
+
+//以下是排序模块
 void sort_slist(void) //按照学号升序排序。
 {
     char *sort_array[*stu_total];

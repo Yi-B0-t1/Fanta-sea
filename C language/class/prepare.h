@@ -45,9 +45,9 @@ int openfiles(void);
 //输入表单
 void init(void);
 //初始化数据
+
 void create_grade_list(void);
 //建立成绩单
-
 int array_sort(const void *a, const void *b); //默认升序即a在前，b在后，返回a-b，注意return的强制类型转换，条件运算符是通解
 int float_sort(const void *a, const void *b); //默认升序即a在前，b在后，返回a-b，注意return的强制类型转换，条件运算符是通解
 /*排序函数*/

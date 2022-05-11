@@ -93,10 +93,9 @@ int openfiles(FILE *file_stu, FILE *file_course, FILE *file_select)
             checker = 2;
             puts("\nALL lists created.");
             system("pause");
+            return 1;
         }
-        checker = 1;
     }
-    return 1;
 }
 //建表
 void init(Student stu_list[], int *stu_total, Course course_list[], int *course_total, Select select_list[], int *select_total)

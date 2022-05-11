@@ -1,6 +1,7 @@
 {
   "version": "0.2.0",
   "configurations": [
+    
     {
       "name": "gcc.exe - 生成和调试活动文件",
       "type": "cppdbg",
@@ -41,7 +42,7 @@
       "internalConsoleOptions": "openOnSessionStart",
       "MIMode": "gdb",
       "miDebuggerPath": "C:/MinGW/bin/gdb.exe",
-      "externalConsole": false,
+      "externalConsole": true,
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",

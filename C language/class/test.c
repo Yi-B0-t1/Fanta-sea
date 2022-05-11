@@ -1,12 +1,13 @@
 #include <stdio.h>
-#include <stdbool.h>
-int main(int argc, char *argv[])
+int main()
 {
-    int count;
-    if ((1 > 0) == false)
-        printf("The command line has %d arguments:\n", /**/ argc - 1) /**/;
-    for (count = /**/ 1; count < argc; count++)
-        printf("%d:%s\n", count, argv[count]);
-    printf("\n");
-    return 0;
+    int a = 1, b = 0;
+    if (!a)
+        b++;
+    else if (a == 0)
+        if (a)
+            b += 2;
+        else
+            b += 3;
+    printf("%d", b);
 }

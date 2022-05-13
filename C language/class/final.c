@@ -18,6 +18,8 @@ int main(void)
                 sort_clist();      //按照课程号升序排序。
                 sort_grade_list(); //按照平均成绩降序排序
             }
+            printf("\n%f\n", grade_list[1].average_grade);
+            system("pause");
             break;
         case 2:
             system("cls"); /* 清屏 */

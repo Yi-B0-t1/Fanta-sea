@@ -1,8 +1,8 @@
 #include <stdio.h>
 #define TOTAL 15
 FILE *file_stu, *file_course, *file_select; //输入的三个文件的指针
-int i[3] = {0};
-int *stu_total = i, *course_total = &i[1], *select_total = &i[2]; //保护指针
+int i[4] = {0};
+int *stu_total = i, *course_total = &i[1], *select_total = &i[2], *stu_real_total = &i[3]; //保护指针
 
 typedef struct
 {

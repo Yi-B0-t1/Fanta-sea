@@ -157,6 +157,8 @@ void create_grade_list(void)
     }
 }
 
+//以上代码已检验无误，相关driver已验证
+
 //以下是排序模块
 void sort_slist(void) //按照学号升序排序。
 {

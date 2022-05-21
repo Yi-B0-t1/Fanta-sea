@@ -1,8 +1,8 @@
 #include <stdio.h>
 #define TOTAL 15
 FILE *file_stu, *file_course, *file_select; //输入的三个文件的指针
-int i[4] = {0};
-int *stu_total = i, *course_total = &i[1], *select_total = &i[2], *stu_real_total = &i[3]; //保护指针
+int ssssss[4] = {0};
+int *stu_total = ssssss, *course_total = &ssssss[1], *select_total = &ssssss[2], *stu_real_total = &ssssss[3]; //保护指针
 
 typedef struct
 {
@@ -14,7 +14,7 @@ typedef struct
 typedef struct
 {
   char course_ID[10];   //课号，长度 10 字符以内
-  char course_name[25]; //课名，12 个汉字以内
+  char course_name[50]; //课名，12 个汉字以内
   float course_grade;   //课分，为一个浮点数
 } Course;
 typedef struct
@@ -58,6 +58,9 @@ void sort_slist(void);      //按照学号升序排序。
 void sort_clist(void);      //按照课程号升序排序。
 void sort_grade_list(void); //按照平均成绩降序排序
 
+void disp_stud(void);
+void disp_course(void);
+void disp_grade(void);
 ///*显示数据*/
 // void disp_stud(Student stu_list[], int stu_total);
 ////显示所有学生信息，每显示10 条记录暂停一次，stu_total 为学生数组元素个数。

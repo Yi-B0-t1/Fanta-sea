@@ -32,6 +32,7 @@
     "float.h": "c",
     "limits.h": "c",
     "stdio.h": "c",
-    "math.h": "c"
+    "math.h": "c",
+    "random": "c"
   }
 }

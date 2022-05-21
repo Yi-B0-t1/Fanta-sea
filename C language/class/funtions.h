@@ -2,11 +2,6 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
-void clearline(void) //清空输入缓冲
-{
-    while (getchar() != '\n')
-        continue;
-}
 //菜单函数
 int menu_select(void)
 {
@@ -28,65 +23,79 @@ int menu_select(void)
             break;
         else
         {
-            clearline();
+            fflush(stdin);
             puts("\nerror\nyou must enter NUMBER from 0, 1, 2, 3, 4, 5, 6\nplease enter again:");
         }
     }
-    clearline();
     return (c - '0');
 }
+
 //打开文件
 int openfiles(void)
 {
-    char filename[20] = {0};
-    int checker = 0; //标记数据流
-    while (1)
+    char ch1[30], ch2[30], ch3[30];
+    int i;
+    system("cls");
+    getchar();
+    puts("按q退出,其他键继续\n");
+    if (getchar() == 'q')
+        return 0;
+
+    do
     {
-        if (checker == 0)
-            puts("\"q\"\"enter\"\"q\"to quit.\"enter\"to continue");
-        if (checker == 1)
-            puts("\"qq\"to quit.\"enter\"to continue\nfile name such as \"name.txt\"\n");
-        clearline();
-        if ((int)'q' == getchar())
-            return 0;
-        puts("Enter the name of the \"STUDENT\" file to be processed:\n");
-        scanf("%20s", filename);
-        if ((file_stu = fopen(filename, "r")) == NULL)
-        { /* 只读模式　 */
-            printf("can't open %s,be well prepared next time!\n", filename);
-            checker = 1;
-            continue;
-        }
-        else
-            puts("\n\"STUDENT\" file loaded.");
-        clearline();
-        puts("Enter the name of the \"COURSE\" file to be processed:\n");
-        scanf("%30s", filename);
-        if ((file_course = fopen(filename, "r")) == NULL)
-        { /* 只读模式　 */
-            printf("can't open %s,be well prepared next time!\n", filename);
-            checker = 1;
-            continue;
-        }
-        else
-            puts("\n\"COURSE\" file loaded.");
-        clearline();
-        puts("Enter the name of the \"SELECT\" file to be processed:\n");
-        scanf("%30s", filename);
-        if ((file_select = fopen(filename, "r")) == NULL)
-        { /* 只读模式　 */
-            printf("can't open %s,be well prepared next time!\n", filename);
-            checker = 1;
-            continue;
-        }
-        else
-        {
-            puts("\nALL lists created.");
-            system("pause");
-            return 1;
-        }
+        puts("\n是否指定学生信息文件？\n是：1和<Enter>\n否：0和<Enter>.\n");
+        fflush(stdin);
+        scanf("%d", &i);
+    } while (i != 1 && i != 0);
+    if (i == 1)
+    {
+        puts("请输入一个学生信息文件的文件名：");
+        scanf("%30s", ch1);
+    }
+    if ((file_stu = fopen(ch1, "r")) == NULL)
+    {
+        puts("即将打开默认文件");
+        file_stu = fopen("slist.txt", "r");
+    }
+
+    do
+    {
+        puts("\n是否指定课程信息文件？\n是：1和<Enter>\n否：0和<Enter>.\n");
+        fflush(stdin);
+        scanf("%d", &i);
+    } while (i != 1 && i != 0);
+    if (i == 1)
+    {
+        puts("请输入一个课程信息文件的文件名：");
+        scanf("%30s", ch2);
+    }
+    if ((file_course = fopen(ch2, "r")) == NULL)
+    {
+        puts("即将打开默认文件");
+        file_course = fopen("clist.txt", "r");
+    }
+
+    do
+    {
+        puts("\n是否指定选课信息文件？\n是：1和<Enter>\n否：0和<Enter>.\n");
+        fflush(stdin);
+        scanf("%d", &i);
+    } while (i != 1 && i != 0);
+    if (i == 1)
+    {
+        puts("请输入一个选课信息文件的文件名：");
+        scanf("%30s", ch3);
+    }
+    if ((file_select = fopen(ch3, "r")) == NULL)
+    {
+        puts("即将打开默认文件");
+        file_select = fopen("sclist.txt", "r");
+        puts("\n所有文件打开完毕");
+        system("pause");
+        return 1;
     }
 }
+
 //建表
 void init(void)
 {
@@ -121,7 +130,6 @@ void init(void)
 
 //事实证明driver的做法是好的，大程序往往很难看出来问题，有必要把每个函数部分单独测试
 
-//以下内容有待验证
 //学号，姓名，各科（按读入顺序）成绩，总分，加权平均分
 void create_grade_list(void)
 {
@@ -160,83 +168,192 @@ void create_grade_list(void)
 //以上代码已检验无误，相关driver已验证
 
 //以下是排序模块
-void sort_slist(void) //按照学号升序排序。
+void sort_slist()
 {
-    char *sort_array[*stu_real_total];
-    int init;
-    for (init = 0; init < *stu_real_total; init++)
+
+    int i, j, k = -1;
+    char ch[10];
+
+    char xh[10];
+    char xm[20];
+    char xb[3];
+    int nl;
+    for (i = 0; i < *stu_total;)
     {
-        strcpy(sort_array[init], stu_list[init].stu_ID);
-    }
-    qsort(sort_array, *stu_real_total, sizeof(stu_list[0].stu_ID), array_sort);
-    //一重循环排列元素
-    //二重循环交换下标
-    for (init = 0; init < *stu_real_total; init++)
-    {
-        int old;
-        for (old = 0; old < *stu_real_total; old++)
+        strcpy(ch, stu_list[i].stu_ID);
+        for (j = k = i; j < *stu_total; j++)
         {
-            if (strcmp(sort_array[init], stu_list[old].stu_ID))
+            if (strcmp(ch, stu_list[j].stu_ID) > 0)
             {
-                old = init;
-                break;
+                strcpy(ch, stu_list[j].stu_ID);
+                k = j;
             }
         }
+        strcpy(xh, stu_list[i].stu_ID);
+        strcpy(stu_list[i].stu_ID, stu_list[k].stu_ID);
+        strcpy(stu_list[k].stu_ID, xh);
+
+        strcpy(xm, stu_list[i].stu_name);
+        strcpy(stu_list[i].stu_name, stu_list[k].stu_name);
+        strcpy(stu_list[k].stu_name, xm);
+
+        strcpy(xb, stu_list[i].sex);
+        strcpy(stu_list[i].sex, stu_list[k].sex);
+        strcpy(stu_list[k].sex, xb);
+
+        nl = stu_list[i].age;
+        stu_list[i].age = stu_list[k].age;
+        stu_list[k].age = nl;
+        i++;
     }
 }
-void sort_clist(void) //按照课程号升序排序。
+
+void sort_clist(void)
 {
-    char *sort_array[*course_total];
-    int init;
-    for (init = 0; init < *course_total; init++)
+    int i, j, k;
+    char ch[10];
+    char kh[10];
+    char km[50];
+    float xf;
+    for (i = 0; i < *course_total; i++)
     {
-        strcpy(sort_array[init], course_list[init].course_ID);
-    }
-    qsort(sort_array, *course_total, sizeof(course_list[0].course_ID), array_sort);
-    //一重循环排列元素
-    //二重循环交换下标
-    for (init = 0; init < *course_total; init++)
-    {
-        int old;
-        for (old = 0; old < *course_total; old++)
-        {
-            if (strcmp(sort_array[init], course_list[old].course_ID))
+        strcpy(ch, course_list[i].course_ID);
+        for (j = k = i; j < *course_total; j++)
+            if (strcmp(ch, course_list[j].course_ID) > 0)
             {
-                old = init;
-                break;
+                strcpy(ch, course_list[j].course_ID);
+                k = j;
             }
+        strcpy(kh, course_list[i].course_ID);
+        strcpy(course_list[i].course_ID, course_list[k].course_ID);
+        strcpy(course_list[k].course_ID, kh);
+
+        strcpy(km, course_list[i].course_name);
+        strcpy(course_list[i].course_name, course_list[k].course_name);
+        strcpy(course_list[k].course_name, km);
+
+        xf = course_list[i].course_grade;
+        course_list[i].course_grade = course_list[k].course_grade;
+        course_list[k].course_grade = xf;
+    }
+}
+void sort_grade_list()
+{
+    int i, j, k, m;
+    float t;
+    char xh[10];
+    char xm[20];
+    float cj;
+    float pj;
+    float zxf;
+    for (i = 0; i < *stu_total; i++)
+    {
+        t = grade_list[i].average_grade;
+        for (j = k = i; j < *stu_total; j++)
+            if (t < grade_list[j].average_grade)
+            {
+                t = grade_list[j].average_grade;
+                k = j;
+            }
+        strcpy(xh, grade_list[i].stu_ID);
+        strcpy(grade_list[i].stu_ID, grade_list[k].stu_ID);
+        strcpy(grade_list[k].stu_ID, xh);
+        strcpy(xm, grade_list[i].stu_name);
+        strcpy(grade_list[i].stu_name, grade_list[k].stu_name);
+        strcpy(grade_list[k].stu_name, xm);
+        for (m = 0; m < *course_total; m++)
+        {
+            cj = grade_list[i].stu_grade[m];
+            grade_list[i].stu_grade[m] = grade_list[k].stu_grade[m];
+            grade_list[k].stu_grade[m] = cj;
+        }
+        pj = grade_list[i].average_grade;
+        grade_list[i].average_grade = grade_list[k].average_grade;
+        grade_list[k].average_grade = pj;
+        zxf = grade_list[i].total_grade;
+        grade_list[i].total_grade = grade_list[k].total_grade;
+        grade_list[k].total_grade = zxf;
+    } //完全可以设计一个swap函数的，后来人要注意优化呀
+}
+
+/*D·显示学生信息，10条1停*/ void disp_stud()
+{
+    system("cls"); /* 清屏 */
+    int i;
+    puts("\t学号\t\t\t姓名\t\t\t性别\t\t\t年龄\n-----------------------------------------------------------------------------------------\n");
+    for (i = 0; i < *stu_total;)
+    {
+        printf("%d\t%s\t\t%s\t\t\t%s\t\t\t%d\n", (i + 1), stu_list[i].stu_ID, stu_list[i].stu_name, stu_list[i].sex, stu_list[i].age);
+        i++;
+        if (i % 10 == 0)
+            system("pause");
+    }
+}
+
+/*D·显示课程信息，10条1停*/ void disp_course()
+{
+    system("cls"); /* 清屏 */
+    int i;
+    puts("编号\t课程号\t\t\t课程名        \t\t\t学分\n----------------------------------------------------------------------\n");
+    for (i = 0; i < *course_total;)
+    {
+        printf("%d\t%s\t\t\t%s\t\t\t%.2f\n", (i + 1), course_list[i].course_ID, course_list[i].course_name, course_list[i].course_grade);
+        i++;
+        if (i % 10 == 0)
+            system("pause");
+    }
+}
+
+/*D·显示成绩单，10条1停*/ void disp_grade()
+{
+    system("cls"); /* 清屏 */
+    int i, j, k, m = 0;
+    printf("排名      学号              姓名");
+    for (j = 0; j < *course_total; j++)
+        printf("   %13s", course_list[j].course_name);
+    printf("     平均分     总学分\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+    for (i = 0; i < *stu_total;)
+    {
+        printf("第%d名     %s        %13s", (i + 1), grade_list[i].stu_ID, grade_list[i].stu_name);
+        for (k = 0; k < *course_total; k++)
+            printf("%13.2f", grade_list[i].stu_grade[k]);
+        printf("%13.2f%13.2f\n", grade_list[i].average_grade, grade_list[i].total_grade);
+        i++;
+        if (i % 10 == 0)
+            system("pause");
+    }
+}
+void menu2()
+{
+    int checker;
+    /*显示所有数据*/
+    while (1)
+    {
+        fflush(stdin);
+        system("cls"); /* 清屏 */
+        puts("按q退出,其他键继续\n");
+        if (getchar() == 'q')
+            return;
+        do
+        {
+            fflush(stdin);
+            puts("显示学生表输入1\n显示课程表输入2\n显示成绩表输入3\n其他输入无效");
+            scanf("%d", &checker);
+        } while (checker != 1 && checker != 2 && checker != 3);
+        switch (checker)
+        {
+        case 1:
+            disp_stud();
+            system("pause");
+            return;
+        case 2:
+            disp_course();
+            system("pause");
+            return;
+        case 3:
+            disp_grade();
+            system("pause");
+            return;
         }
     }
-}
-void sort_grade_list(void) //按照平均成绩降序排序
-{
-    float sort_array[*stu_real_total];
-    int init;
-    for (init = 0; init < *stu_real_total; init++)
-    {
-        sort_array[init] = grade_list[init].average_grade;
-    }
-    qsort(sort_array, *stu_real_total, sizeof(grade_list[0].average_grade), float_sort);
-    //一重循环排列元素
-    //二重循环交换下标
-    for (init = 0; init < *stu_real_total; init++)
-    {
-        int old;
-        for (old = 0; old < *stu_real_total; old++)
-        {
-            if (sort_array[init] == grade_list[old].average_grade)
-            {
-                old = init;
-                break;
-            }
-        }
-    }
-}
-int array_sort(const void *a, const void *b) //默认升序即a在前，b在后，返回a-b，注意return的强制类型转换，条件运算符是通解
-{
-    return strcmp((*(Student *)a).stu_ID, (*(Student *)b).stu_ID); //注意指针的强制类型转换
-}
-int float_sort(const void *a, const void *b) //默认升序即a在前，b在后，返回a-b，注意return的强制类型转换，条件运算符是通解
-{
-    return (*(float *)a > *(float *)b) ? 1 : -1; //注意指针的强制类型转换
 }

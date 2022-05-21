@@ -125,7 +125,7 @@ Score CJ[S];
     {
         printf("文件名有误，即将打开默认文件");
         system("pause");
-        f1 = fopen("Students.txt", "r+");
+        f1 = fopen("slist.txt", "r+");
     }
     printf("\n是否指定课程信息txt文件？\n是：1和<Enter>\n否：0和<Enter>.\n");
     scanf("%d", &i);
@@ -140,7 +140,7 @@ Score CJ[S];
     {
         printf("文件名有误，即将打开默认文件");
         system("pause");
-        f2 = fopen("Course.txt", "r+");
+        f2 = fopen("clist.txt", "r+");
     }
     printf("\n是否指定选课信息txt文件？\n是：1和<Enter>\n否：0和<Enter>.\n");
     scanf("%d", &i);
@@ -155,7 +155,7 @@ Score CJ[S];
     {
         printf("文件名有误，即将打开默认文件");
         system("pause");
-        f3 = fopen("Selection.txt", "r+");
+        f3 = fopen("sclist.txt", "r+");
     }
     init();
     ml();

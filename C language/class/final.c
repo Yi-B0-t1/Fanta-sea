@@ -14,17 +14,15 @@ int main(void)
             {                // create lists
                 init();
                 create_grade_list();
+                //一鼓作气吧这写完吧，抄也罢，省也罢，完成是第一目标
                 sort_slist();      //按照学号升序排序。
                 sort_clist();      //按照课程号升序排序。
                 sort_grade_list(); //按照平均成绩降序排序
             }
             printf("\n%f\n", grade_list[1].average_grade);
-            system("pause");
             break;
         case 2:
-            system("cls"); /* 清屏 */
-            /*显示所有数据*/
-            //复制初始化即可
+            menu2();
             break;
         case 3:
             /*键入与修改数据*/
@@ -43,6 +41,6 @@ int main(void)
             return 0;
         }
         system("pause");
-        clearline();
+        fflush(stdin);
     }
 }

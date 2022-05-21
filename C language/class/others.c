@@ -436,7 +436,7 @@ Score CJ[S];
     int i, p, t;
     char xh[10];
 ag:
-    printf("请输入其学号：");
+    printf("学生学号：");
     scanf("%s", &xh);
     for (i = p = 0; i < num_s; i++)
     {

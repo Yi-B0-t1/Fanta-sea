@@ -37,7 +37,7 @@ int openfiles(void)
     int i;
     system("cls");
     getchar();
-    puts("按q退出,其他键继续\n");
+    puts("按q退出,其他键+<enter>继续\n");
     if (getchar() == 'q')
         return 0;
 
@@ -276,7 +276,7 @@ void sort_grade_list()
     } //完全可以设计一个swap函数的，后来人要注意优化呀
 }
 
-/*D·显示学生信息，10条1停*/ void disp_stud()
+void disp_stud()
 {
     system("cls"); /* 清屏 */
     int i;
@@ -290,7 +290,7 @@ void sort_grade_list()
     }
 }
 
-/*D·显示课程信息，10条1停*/ void disp_course()
+void disp_course()
 {
     system("cls"); /* 清屏 */
     int i;
@@ -304,7 +304,7 @@ void sort_grade_list()
     }
 }
 
-/*D·显示成绩单，10条1停*/ void disp_grade()
+void disp_grade()
 {
     system("cls"); /* 清屏 */
     int i, j, k, m = 0;
@@ -331,7 +331,7 @@ void menu2()
     {
         fflush(stdin);
         system("cls"); /* 清屏 */
-        puts("按q退出,其他键继续\n");
+        puts("按q退出,其他键+<enter>继续\n");
         if (getchar() == 'q')
             return;
         do
@@ -355,5 +355,222 @@ void menu2()
             system("pause");
             return;
         }
+    }
+}
+///*数据输入*/
+// int input_stud(Student stu_list[], int stu_total);
+////从键盘输入若干条学生信息记录，依次存放到学生信息结构体数组 stu_list 中，stu_number 为数组原有学生记录数，函数返回最后的学生记录数。
+// int input_course(Course course_list[], int course_total);
+////从键盘输入若干条课程信息记录，依次存放到课程信息结构体数组 course_list 中，course_total 为数组原有课程记录数，函数返回最后的课程记录数。
+
+///*上述两个函数运行时，每输入一条记录都检测是否已经存在相同记录，如果已经存在则
+//提示是否替换，否则直接增加记录，使得函数同时具有增加记录和修改已有记录的功能。每
+//输入完一条记录都要提示是否继续输入下一条记录，根据输入决定是否继续操作。*/
+
+int input_stud(void)
+{
+    int i;
+begin:
+    puts("按q退出,其他键+<enter>继续\n");
+    if (getchar() == 'q')
+        return;
+    puts("输入一条学生信息记录：");
+    puts("学号：");
+    scanf("%s", stu_list[*stu_total].stu_ID);
+    for (i = 0; i < *stu_total; i++)
+    {
+        if (!strcmp(stu_list[*stu_total].stu_ID, stu_list[i].stu_ID))
+        {
+            puts("已有记录，是否继续输入？(y/n)");
+            if (getchar() == 'y')
+                break;
+            else
+            {
+                strcpy(stu_list[*stu_total].stu_ID, "");
+                goto begin;
+            }
+        }
+    }
+    puts("姓名：");
+    scanf("%s", stu_list[*stu_total].stu_name);
+    for (i = 0; i < *stu_total; i++)
+    {
+        if (!strcmp(stu_list[*stu_total].stu_name, stu_list[i].stu_name))
+        {
+            puts("已有记录，是否继续输入？(y/n)");
+            if (getchar() == 'y')
+                break;
+            else
+            {
+                strcpy(stu_list[*stu_total].stu_name, "");
+                strcpy(stu_list[*stu_total].stu_ID, "");
+                goto begin;
+            }
+        }
+    }
+    puts("性别：");
+    scanf("%s", stu_list[*stu_total].sex);
+    puts("年龄：");
+    scanf("%d", &stu_list[*stu_total].age);
+    return ++stu_total;
+}
+
+int input_course(void)
+{
+    int i;
+begin:
+    puts("按q退出,其他键+<enter>继续\n");
+    if (getchar() == 'q')
+        return;
+    puts("输入一条课程信息记录：");
+    puts("课号：");
+    scanf("%s", course_list[*course_total].course_ID);
+    for (i = 0; i < *course_total; i++)
+    {
+        if (!strcmp(course_list[*course_total].course_ID, course_list[i].course_ID))
+        {
+            puts("已有记录，是否继续输入？(y/n)");
+            if (getchar() == 'y')
+                break;
+            else
+            {
+                strcpy(course_list[*course_total].course_ID, "");
+                goto begin;
+            }
+        }
+    }
+    puts("课名：");
+    scanf("%s", course_list[*course_total].course_name);
+    for (i = 0; i < *course_total; i++)
+    {
+        if (!strcmp(course_list[*course_total].course_name, course_list[i].course_name))
+        {
+            puts("已有记录，是否继续输入？(y/n)");
+            if (getchar() == 'y')
+                break;
+            else
+            {
+                strcpy(course_list[*course_total].course_name, "");
+                strcpy(course_list[*course_total].course_ID, "");
+                goto begin;
+            }
+        }
+    }
+    puts("学分：");
+    scanf("%f", &course_list[*course_total].course_grade);
+    return ++course_total;
+}
+
+int input_select()
+{
+    int i, c = 0, sid, cid;
+    char a[30] = {0};
+    float g;
+begin:
+    puts("按q退出,其他键+<enter>继续\n");
+    if (getchar() == 'q')
+        return;
+    puts("输入一条选课信息记录：");
+    puts("学号：");
+    scanf("%s", a);
+    for (i = 0; i < *stu_total; i++)
+    {
+        if (!strcmp(a, stu_list[i].stu_ID))
+        {
+            c = 1;
+            sid = i;
+            break;
+        }
+    }
+    if (c != 1)
+    {
+        puts("没有此学号");
+        system("pause");
+        goto begin;
+    }
+    else
+        strcpy(select_list[*select_total].stu_ID, a);
+    puts("课号：");
+    scanf("%s", a);
+    for (i = 0; i < *course_total; i++)
+    {
+        if (!strcmp(a, course_list[i].course_ID))
+        {
+            c = 1;
+            cid = i;
+            break;
+        }
+    }
+    if (c != 1)
+    {
+        puts("没有此课号");
+        strcpy(select_list[*select_total].stu_ID, "");
+        system("pause");
+        goto begin;
+    }
+    else
+        strcpy(select_list[*select_total].course_ID, a);
+    puts("学生成绩：");
+    puts("是否有成绩？(y/n)");
+    if (getchar() == 'y')
+    {
+        scanf("%f", &g);
+        if (g < -1 || g > 120)
+        {
+            puts("成绩超限");
+            strcpy(select_list[*select_total].stu_ID, "");
+            strcpy(select_list[*select_total].course_ID, "");
+            system("pause");
+            goto begin;
+        }
+        else
+            select_list[*select_total].stu_grade = g;
+    }
+    else
+        select_list[*select_total].stu_grade = -1;
+    return ++select_total;
+}
+void menu3()
+{
+    int i, k1, k2, k3;
+    while (1)
+    {
+        fflush(stdin);
+        system("cls"); /* 清屏 */
+        puts("按q退出,其他键+<enter>继续\n");
+        if (getchar() == 'q')
+            return;
+        puts("改学生表输入1  改学生表输入2  改选课表输入3");
+        scanf("%d", &i);
+        switch (i)
+        {
+        case 1:
+            k1 = input_stud();
+            printf("共有%d学生\n", k1);
+            break;
+        case 2:
+            k2 = input_course();
+            printf("共有%d课程\n", k2);
+            break;
+        case 3:
+            k3 = input_select();
+            printf("共有%d选课\n", k3);
+            break;
+        }
+    }
+}
+void menu1()
+{
+    system("cls"); /* 清屏 */
+    // input stream loaded
+    puts("NOW you are in: Initialize from 3 files\n");
+    if (openfiles()) //注意，不能把函数原型直接拷贝过来用，把类型名字去掉
+    {                // create lists
+        init();
+        create_grade_list();
+        //一鼓作气吧这写完吧，抄也罢，省也罢，完成是第一目标
+        sort_slist();      //按照学号升序排序。
+        sort_clist();      //按照课程号升序排序。
+        sort_grade_list(); //按照平均成绩降序排序
     }
 }

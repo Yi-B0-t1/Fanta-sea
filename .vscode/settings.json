@@ -33,6 +33,7 @@
     "limits.h": "c",
     "stdio.h": "c",
     "math.h": "c",
-    "random": "c"
+    "random": "c",
+    "tuple": "c"
   }
 }

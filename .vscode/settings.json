@@ -34,6 +34,9 @@
     "stdio.h": "c",
     "math.h": "c",
     "random": "c",
-    "tuple": "c"
+    "tuple": "c",
+    "*.tcc": "c",
+    "streambuf": "c",
+    "cmath": "c"
   }
 }

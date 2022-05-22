@@ -17,7 +17,7 @@ int main(void)
             break;
             /*键入与修改数据*/
         case 4:
-            /*根据输入删除对应数据*/
+            menu4();
             break;
         case 5:
             /*根据输入查询信息*/

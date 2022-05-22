@@ -20,9 +20,11 @@ int main(void)
             menu4();
             break;
         case 5:
+            menu5();
             /*根据输入查询信息*/
             break;
         case 6:
+            menu6();
             //导出所有数据
             break;
         case 0: //退出程序

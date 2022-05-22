@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 #define TOTAL 15
 FILE *file_stu, *file_course, *file_select; //输入的三个文件的指针
 FILE *f1, *f2, *f3, *f4;
@@ -94,16 +95,21 @@ void del_c(void);
 // int delete_select(Select select_list[], int select_total); //根据学号删除满足条件 的若条选课记录，返回数组中还剩下的记录数。
 
 ///*查询信息*/
+/*D·查询学生信息*/ void find_stu_list();
+/*D·查询课程信息*/ void find_c();
+/*D·查询成绩信息*/ void find_grade_list();
 // void query_stud(Student stu_list[], int stu_total);
 ////根据学号或姓名查询学生记录并显示。
 // void query_course(Course course_list[], int course_total);
 ////根据课程号或课程名查询课程记录并显示。
 // void query_gradelist(Score grade_list[], int grade_total, Course course_list[], int course_total, Student stu_list[], int stu_total);
 ////根据信号查询成绩单，显示对应同学的所有课程成绩、平均分、学分以及排名情况，并显示。
-
+/*D·导出至文件*/ void write_to_file1();
 ///*批量导出数据*/
 // void write_to_file1(Student stu_list[], int stu_total, Course course_list[], int course_total, Select select_list[], int select_total);
 ///*以时间序列字符串为文件名，把学生信息表、课程信息表和选课信息表分别保存都对应的磁盘文件中。例如，学生文件名为
 // student20190918120423.txt、课程文件名为 course20190918120430.txt、选课信息文件名为 select201909181258.txt。*/
 // void write_to_file2(Score grade_list[], int grade_total, Course course_list[], int course_total, Student stu_list[], int stu_total);
 ///*以时间序列字符串为文件名，把成绩单保存的磁盘文件中，包括名次、学号、姓名、性别、各门课成绩、平均分以及总学分*/
+/*D·导出至文件*/ void write_to_file2();
+/*D·增加学生信息*/ void zj();

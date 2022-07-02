@@ -1,0 +1,137 @@
+\documentclass[a4paper]{article} %打印纸张大小和文档类型
+\usepackage[margin=1in]{geometry} % 设置边距，符合Word设定
+\usepackage[UTF8]{ctex}%支持显示汉字
+\usepackage{amsfonts}%支持数学字母
+\usepackage{amssymb}%同上，这两个包最好一块用
+\usepackage{setspace}%支持填空下划线
+\usepackage{amsmath}%支持矩阵、方程组
+\usepackage{latexsym}%支持符号
+\renewcommand{\baselinestretch}{2}%调整行距:2倍
+
+\title{2021$\sim$2022线性代数A卷}
+\author{AsilenA}
+\date{\today}
+
+\begin{document}
+\maketitle
+%\underline{\hspace{2cm}}
+%填空的下划线
+%\hspace{1cm}
+%选择的空
+%A、1个\hspace{1cm}B、2个\hspace{1cm}C、3个\hspace{1cm}D、4个
+%选择的选项
+%\(\vec{}=[]^T\)
+%向量
+%$\begin{bmatrix}0&0&0&0\\0&0&0&0\\0&0&0&0\end{bmatrix}$
+%矩阵
+%\(\mathbb{R}^3\)
+%域\空间
+%\(\mathbf{A}\)
+%粗体数学字母
+%det(\(\mathbf{A}\))
+%det（粗体字母）
+%\begin{equation*}
+%    \left\{\begin{aligned}
+%        x_{1}+x_{2}+x_{3}+x_{4}&=0\\
+%        x_{2}+2x_{3}+2x_{4}&=2\\
+%        -x_{2}-2x_{3}-2x_{4}&=c\\
+%        3x_{1}+2x_{2}+x_{3}+x_{4}&=-2
+%    \end{aligned}\right.%注意这个点，代替了右括号
+%    \end{equation*}
+%线性方程组
+一、填空题(每空2分)
+
+1.在\(\mathbb{R}^3\)中,已知\(\vec{u}=[2,4,4]^T\),\(\vec{v}=[1,1,0]^T\)求向量\(\vec{u}\)在向量\(\vec{v}\)上的向量投影:\underline{\hspace{2cm}}.
+
+2.向量组\(\vec{a}_1=[1,3,2]^T\),\(\vec{a}_2=[2,1,3]^T\),\(\vec{a}_3=[3,2,1]^T\)是线性\underline{\hspace{1cm}}的(“相关”或“无关”).
+
+3.已知\(\mathbf{A}\)是三阶矩阵,det(\(\mathbf{A}\))=\(\frac{1}{3}\),则det\big(\((2\mathbf{A})^{-1}-adj(\mathbf{A})\)\big)=\underline{\hspace{2cm}}.
+
+4.若矩阵\(\mathbf{A}=\begin{bmatrix}1&2&3&0&5\\0&0&m&1&1\\0&0&0&k&2\end{bmatrix}\)的秩为2,则m=\underline{\hspace{2cm}},k=\underline{\hspace{2cm}}.
+
+5.设\(\mathbb{R}^3\)的一个基为：\(\vec{\beta}_1=[1,2,1]^T\),\(\vec{\beta}_2=[1,3,2]^T\),\(\vec{\beta}_3=[1,a,3]^T\),向量\(\vec{a}=[1,1,1]^T\),在这个基下的坐标向量为\([c,-2,1]^T\),则a=\underline{\hspace{2cm}},c=\underline{\hspace{2cm}}.
+
+6.写出\(\mathbb{R}^2\)中将向量逆时针方向旋转\(\frac{\pi}{6}\)的线性变换：\underline{\hspace{2cm}}.
+
+7.设三阶实对称矩阵\(\mathbf{A}\)的秩为2,矩阵2\(\mathbf{A-I}\)不可逆,且det(\(\mathbf{A+I}\))=0,则\(\mathbf{A}\)的所有特征值是:\underline{\hspace{2cm}},二次型\(\vec{x}^T\mathbf{A}\vec{x}\)的规范型为:\underline{\hspace{2cm}}.
+
+二、选择题(每空3分)
+
+1.下列陈述中正确的个数(\hspace{1cm})
+
+(1)初等变换不改变矩阵的秩\hspace{0.3cm}(2)初等变换不改变矩阵的行数和列数
+
+(3)初等变换不改变矩阵的可逆与否\hspace{0.3cm}(4)可逆矩阵可以表示为有限个初等矩阵的乘积
+
+A、1个\hspace{1cm}B、2个\hspace{1cm}C、3个\hspace{1cm}D、4个
+
+2.设方阵\(\mathbf{A}\),\(\mathbf{B}\),\(\mathbf{C}\)满足\(\mathbf{A}\)\(\mathbf{B}\)=\(\mathbf{A}\)\(\mathbf{C}\),则条件(\hspace{1cm})成立时,可得\(\mathbf{B}\)=\(\mathbf{C}\)
+
+A、\(\mathbf{A}\)是非零矩阵\hspace{1cm}B、\(\mathbf{B}\)和\(\mathbf{C}\)都可逆\hspace{1cm}C、方程组\(\mathbf{A}\)x=0\hspace{1cm}D、det(\(\mathbf{A}\))\(\ne0\)
+
+\clearpage%新起一页
+
+3.当\(\mathbf{M}\)为(\hspace{1cm})时,\(\mathbf{M}\)必为方阵
+
+A、分块矩阵\hspace{0.8cm}B、可逆矩阵\hspace{0.8cm}C、线性方程组的增广矩阵\hspace{0.8cm}D、线性方程组的系数矩阵
+
+三、计算题(每题8分)(要求写出计算过程)
+
+1.求矩阵\(\mathbf{A}\)=$\begin{bmatrix}-x&-1&2&y\\0&3&1&2\\0&2&-1&3\\1&0&-2&2\end{bmatrix}$行列式的值
+
+\vspace{20em}%空行，其中数字规定了空白大小
+
+2.已知\(\mathbf{A}\)=$\begin{bmatrix}2&1&-1\\0&3&2\\1&-1&1\end{bmatrix}$,\(\mathbf{B}\)=$\begin{bmatrix}1&-1\\1&1\\2&1\end{bmatrix}$,满足\(\mathbf{A}\)\(\mathbf{X}\)=\(\mathbf{X}\)+\(\mathbf{B}\),求矩阵\(\mathbf{X}\).
+
+\clearpage
+
+3.对矩阵\(\mathbf{A}\)=$\begin{bmatrix}1&3&-2&1\\2&1&6&2\\3&4&5&6\end{bmatrix}$,分别求子空间\(\mathbf{C}\)(\(\mathbf{A}\))和\(\mathbf{C}\)(\(\mathbf{A}^T\))的一个基.
+
+\vspace{25em}
+
+4.已知矩阵\(\mathbf{A}\)=$\begin{bmatrix}5&1\\0&4\end{bmatrix}$,通过将\(\mathbf{A}\)对角化求出\(\mathbf{A}^K\)
+
+\clearpage
+
+四、(15分)
+
+已知线性方程组
+\begin{equation*}
+    \left\{\begin{aligned}
+        x_{1}+x_{2}+x_{3}+x_{4}&=0\\
+        x_{2}+2x_{3}+2x_{4}&=2\\
+        -x_{2}-2x_{3}-2x_{4}&=c\\
+        3x_{1}+2x_{2}+x_{3}+x_{4}&=-2
+    \end{aligned}\right.%注意这个点，代替了右括号
+\end{equation*}矩阵形式为\(\mathbf{A}\)x=b
+
+(1)当c取何值时,方程组无解、有唯一解和无穷多解?
+
+(2)当有无穷多解时,求出通解,并给出\(\mathbf{A}\)x=b的一个特解和\(\mathbf{N}\)(\(\mathbf{A}\))的一个基.
+
+\vspace{19em}
+
+五、(16分)
+
+已知下面的二次型系数矩阵有一个特征值是2；f(\(x_1,x_2,x_3\))=\(x_1^2+3x_2^2+x_3^2+2x_1x_2+6x_1x_3+2x_2x_3\)
+
+(1)写出系数矩阵,求出另外两个特征值(2)用正交变换将二次型化为标准型,并求出正交变换x=\(\mathbf{Q}\)y及二次型的标准型(3)判断此二次型是否正定.
+
+\clearpage
+
+六、证明题(三体里面自选两题做,每题4分)
+
+1.设n\(\times\)m矩阵\(\mathbf{A}\)具有分块矩阵的表达形式：\(\mathbf{A}\)=[\(\mathbf{B}\)|\(\mathbf{C}\)],其中\(\mathbf{B}\)是n\(\times\)s子矩阵,且\(\mathbf{B}^T\mathbf{C}\)=0
+
+证明:det(\(\mathbf{A}^T\mathbf{A}\))=det(\(\mathbf{B}^T\mathbf{B}\))det(\(\mathbf{C}^T\mathbf{C}\)).
+
+2.设向量\(\vec{\beta}\)可表示成向量组\(\vec{\alpha}_1,\vec{\alpha}_2,\cdots,\vec{\alpha}_r\)的线性组合,\\但不能表示成\(\vec{\alpha}_1,\vec{\alpha}_2,\cdots,\vec{\alpha}_{r-1}\)的线性组合
+
+证明：(1)\(\vec{\alpha}_r\)不能表示成\(\vec{\alpha}_1,\vec{\alpha}_2,\cdots,\vec{\alpha}_{r-1}\)的线性组合.
+
+(2)\(\vec{\alpha}_r\)可以表示成\(\vec{\alpha}_1,\vec{\alpha}_2,\cdots,\vec{\alpha}_{r-1},\vec{\beta}\)的线性组合.
+
+3.设\(\lambda_1\),\(\lambda_2\),\(\lambda_3\)是三阶矩阵\(\mathbf{A}\)的三个不同特征值,对应的特征向量分别为\(\vec{v}_1\),\(\vec{v}_2\),\(\vec{v}_3\).\\令\(\vec{w}\)=\(\vec{v}_1\)+\(\vec{v}_2\)+\(\vec{v}_3\)
+
+证明：\(\vec{w}\),\(\mathbf{A}\)\(\vec{w}\),\(\mathbf{A}^2\)\(\vec{w}\)线性无关
+\end{document}
